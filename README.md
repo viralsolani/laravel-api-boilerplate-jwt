@@ -5,6 +5,7 @@ Laravel API Boilerplate is a "starter kit" you can use to build your first API i
 ## Installation
 
 1. run `composer create-project viralsolani/laravel-api-boilerplate-jwt myNextApiProject`;
+2. clone this repositery.
 
 Once the project creation procedure will be completed, run the `php artisan migrate` command to install the required tables.
 
