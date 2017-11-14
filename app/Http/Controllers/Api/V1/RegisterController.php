@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use Config;
-use Validator;
 use App\Models\User\User;
-use Tymon\JWTAuth\JWTAuth;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
+use Config;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Tymon\JWTAuth\JWTAuth;
+use Validator;
 
 class RegisterController extends APIController
 {
     protected $repositery;
 
     /**
-     * __construct
+     * __construct.
+     *
      * @param $repositery
      */
     public function __construct(UserRepository $repositery)
@@ -51,7 +51,7 @@ class RegisterController extends APIController
             throw new HttpException(500);
         }*/
 
-        if(!Config::get('boilerplate.sign_up.release_token')) {
+        if (!Config::get('boilerplate.sign_up.release_token')) {
             return $this->respondCreated([
                 'You have registered successfully. Please check your email for activation!',
             ]);
@@ -61,7 +61,7 @@ class RegisterController extends APIController
 
         return $this->respondCreatedWithData([
             'message'   => 'You have registered successfully. Please check your email for activation!',
-            'token'     => $token
+            'token'     => $token,
         ]);
     }
 }

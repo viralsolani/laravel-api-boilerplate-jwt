@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,18 +14,16 @@ use Illuminate\Http\Request;
 
 Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], function () {
     Route::group(['prefix' => 'auth'], function () {
-
         Route::post('register', 'RegisterController@register');
         Route::post('login', 'LoginController@login');
 
-       /* Route::post('/login', 'AuthController@authenticate');
-        Route::post('/logout', 'AuthController@logout');
-        Route::post('/check', 'AuthController@check');
-        Route::post('/register', 'AuthController@register');
-        Route::get('/activate/{token}', 'AuthController@activate');
-        Route::post('/password', 'AuthController@password');
-        Route::post('/validate-password-reset', 'AuthController@validatePasswordReset');
-        Route::post('/reset', 'AuthController@reset');*/
+        /* Route::post('/login', 'AuthController@authenticate');
+         Route::post('/logout', 'AuthController@logout');
+         Route::post('/check', 'AuthController@check');
+         Route::post('/register', 'AuthController@register');
+         Route::get('/activate/{token}', 'AuthController@activate');
+         Route::post('/password', 'AuthController@password');
+         Route::post('/validate-password-reset', 'AuthController@validatePasswordReset');
+         Route::post('/reset', 'AuthController@reset');*/
     });
 });
-

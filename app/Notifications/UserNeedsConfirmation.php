@@ -45,7 +45,7 @@ class UserNeedsConfirmation extends Notification
     {
         return (new MailMessage())
                     ->subject('Laravel API Boilerplate JWT : Confirm your account!')
-                    ->greeting('Hello ' .$this->user->name.' !')
+                    ->greeting('Hello '.$this->user->name.' !')
                     ->line('Thank you for registering an account with us.')
                     ->line('Your account has been activated.')
                     ->line('Thank you for using our application!');

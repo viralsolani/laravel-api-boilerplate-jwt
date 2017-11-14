@@ -16,6 +16,6 @@ return [
         // this option must be set to true if you want to release a token
         // when your user successfully terminates the password reset procedure
         'release_token' => env('PASSWORD_RESET_RELEASE_TOKEN', false),
-    ]
+    ],
 
 ];

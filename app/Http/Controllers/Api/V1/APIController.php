@@ -133,7 +133,7 @@ class APIController extends Controller
     }
 
     /**
-     * Respond Created with data
+     * Respond Created with data.
      *
      * @param string $message
      *

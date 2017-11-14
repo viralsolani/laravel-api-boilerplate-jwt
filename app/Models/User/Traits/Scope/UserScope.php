@@ -7,5 +7,4 @@ namespace App\Models\User\Traits\Scope;
  */
 trait UserScope
 {
-
 }
