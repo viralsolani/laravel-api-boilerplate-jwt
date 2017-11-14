@@ -1,13 +1,20 @@
 <?php
 
-namespace App;
+namespace App\Models\User;
 
-use Illuminate\Notifications\Notifiable;
+use App\Models\User\Traits\Relationship\UserRelationship;
+use App\Models\User\Traits\Scope\UserScope;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
+/**
+ * Class User.
+ */
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable,
+        UserScope,
+        UserRelationship;
 
     /**
      * The attributes that are mass assignable.
