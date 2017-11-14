@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use JWTAuth;
-use App\Api\V1\Requests\LoginRequest;
-use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Auth;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Validator;
 
 class LoginController extends APIController
 {
     /**
-     * Log the user in
+     * Log the user in.
      *
      * @param Request $request
      *
