@@ -17,4 +17,12 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], functio
         Route::post('register', 'RegisterController@register');
         Route::post('login', 'LoginController@login');
     });
+
+    Route::group(['middleware' => ['jwt.auth']], function () {
+        // Users
+        Route::resource('users', 'UsersController');
+    });
 });
+
+
+

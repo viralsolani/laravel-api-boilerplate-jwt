@@ -23,29 +23,44 @@ class UserRepository extends BaseRepository
     }
 
     /**
-     * Create user account.
+     * Create user.
      *
      * @param array $data
      *
-     * @return static
+     * @return user object
      */
     public function create(array $data)
     {
         $user = new User();
 
-        $user->name = $data['name'];
-        $user->email = $data['email'];
+        $user->name     = $data['name'];
+        $user->email    = $data['email'];
         $user->password = bcrypt($data['password']);
 
         \DB::transaction(function () use ($user) {
             $user->save();
         });
 
-        //$user->notify(new UserNeedsConfirmation($user));
+        $user->notify(new UserNeedsConfirmation($user));
 
-        /*
-        * Return the user object
-        */
+        return $user;
+    }
+
+    /**
+     * Update user.
+     *
+     * @param array $data
+     *
+     * @return user object
+     */
+    public function update($id, $data)
+    {
+        $model = $this->find($id);
+
+        $user = \DB::transaction(function () use ($model, $data) {
+            return tap($model)->update($data);
+        });
+
         return $user;
     }
 }
