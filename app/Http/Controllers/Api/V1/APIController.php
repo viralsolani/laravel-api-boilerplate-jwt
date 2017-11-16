@@ -84,10 +84,10 @@ class APIController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function respondCreated($message)
+    public function respondCreated($data)
     {
         return $this->setStatusCode(201)->respond([
-            'message' => $message,
+            'data' => $data,
         ]);
     }
 

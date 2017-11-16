@@ -7,7 +7,7 @@ use App\Repositories\UserRepository;
 use Config;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Tymon\JWTAuth\JWTAuth;
+use JWTAuth;
 use Validator;
 
 class RegisterController extends APIController
@@ -46,20 +46,15 @@ class RegisterController extends APIController
 
         $user = $this->repositery->create($request->all());
 
-        /*$user = new User($request->all());
-        if(!$user->save()) {
-            throw new HttpException(500);
-        }*/
-
-        if (!Config::get('boilerplate.sign_up.release_token')) {
+        if (!Config::get('boilerplate.register.release_token')) {
             return $this->respondCreated([
-                'You have registered successfully. Please check your email for activation!',
+                'message'  => 'You have registered successfully. Please check your email for activation!',
             ]);
         }
 
         $token = JWTAuth::fromUser($user);
 
-        return $this->respondCreatedWithData([
+        return $this->respondCreated([
             'message'   => 'You have registered successfully. Please check your email for activation!',
             'token'     => $token,
         ]);

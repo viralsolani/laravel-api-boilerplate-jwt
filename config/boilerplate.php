@@ -3,11 +3,11 @@
 return [
 
     // these options are related to the sign-up procedure
-    'sign_up' => [
+    'register' => [
 
         // this option must be set to true if you want to release a token
         // when your user successfully terminates the sign-in procedure
-        'release_token' => env('SIGN_UP_RELEASE_TOKEN', false),
+        'release_token' => env('SIGN_UP_RELEASE_TOKEN', true),
     ],
 
     // these options are related to the password recovery procedure

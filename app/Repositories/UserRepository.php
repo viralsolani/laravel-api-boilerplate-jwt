@@ -41,7 +41,7 @@ class UserRepository extends BaseRepository
             $user->save();
         });
 
-        $user->notify(new UserNeedsConfirmation($user));
+        //$user->notify(new UserNeedsConfirmation($user));
 
         /*
         * Return the user object
