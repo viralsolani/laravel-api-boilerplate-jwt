@@ -30,7 +30,7 @@ class UsersController extends APIController
     public function index(Request $request)
     {
         return UserResource::collection(
-            $this->repositery->getPaginated('1')
+            $this->repositery->getPaginated('25')
         );
     }
 
