@@ -43,30 +43,6 @@ class APIController extends Controller
     }
 
     /**
-     * responsd not found.
-     *
-     * @param string $message
-     *
-     * @return mix
-     */
-    public function respondNotFound($message = 'Not Found')
-    {
-        return $this->setStatusCode(IlluminateResponse::HTTP_NOT_FOUND)->respondWithError($message);
-    }
-
-    /**
-     * Respond with error.
-     *
-     * @param string $message
-     *
-     * @return mix
-     */
-    public function respondInternalError($message = 'Internal Error')
-    {
-        return $this->setStatusCode('500')->respondWithError($message);
-    }
-
-    /**
      * Respond.
      *
      * @param array $data
@@ -102,23 +78,6 @@ class APIController extends Controller
     }
 
     /**
-     * respond with error.
-     *
-     * @param $message
-     *
-     * @return mix
-     */
-    public function respondWithError($message)
-    {
-        return $this->respond([
-                'error' => [
-                    'message'     => $message,
-                    'status_code' => $this->getStatusCode(),
-                ],
-            ]);
-    }
-
-    /**
      * Respond Created.
      *
      * @param string $message
@@ -142,6 +101,79 @@ class APIController extends Controller
     public function respondCreatedWithData($data)
     {
         return $this->setStatusCode(201)->respond($data);
+    }
+
+    /**
+     * respond with error.
+     *
+     * @param $message
+     *
+     * @return mix
+     */
+    public function respondWithError($message)
+    {
+        return $this->respond([
+                'error' => [
+                    'message'     => $message,
+                    'status_code' => $this->getStatusCode(),
+                ],
+            ]);
+    }
+
+    /**
+     * responsd not found.
+     *
+     * @param string $message
+     *
+     * @return mix
+     */
+    public function respondNotFound($message = 'Not Found')
+    {
+        return $this->setStatusCode(IlluminateResponse::HTTP_NOT_FOUND)->respondWithError($message);
+    }
+
+    /**
+     * Respond with error.
+     *
+     * @param string $message
+     *
+     * @return mix
+     */
+    public function respondInternalError($message = 'Internal Error')
+    {
+        return $this->setStatusCode('500')->respondWithError($message);
+    }
+
+    /**
+     * Respond with unauthorized.
+     *
+     * @param string $message
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondUnauthorized($message = 'Unauthorized')
+    {
+        return $this->setStatusCode('401')->respondWithError($message);
+    }
+
+    /**
+     * Respond with forbidden.
+     *
+     * @param string $message
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondForbidden($message = 'Forbidden')
+    {
+        return $this->respondWithError($message, 403);
+    }
+
+    /**
+     * Respond with no content.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondWithNoContent()
+    {
+        return $this->setStatusCode(204)->respond(null);
     }
 
     /**
