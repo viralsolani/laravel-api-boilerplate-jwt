@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use Validator;
-use App\Models\User\User;
-use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
+use App\Models\User\User;
 use App\Repositories\UserRepository;
+use Illuminate\Http\Request;
+use Validator;
 
 class UsersController extends APIController
 {
@@ -23,10 +23,10 @@ class UsersController extends APIController
     }
 
     /**
-    * Return the users.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Return the users.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         return UserResource::collection(
@@ -35,24 +35,25 @@ class UsersController extends APIController
     }
 
     /**
-    * Return the specified resource.
-    *
-    * @param  User $user
-    * @return \Illuminate\Http\Response
-    */
+     * Return the specified resource.
+     *
+     * @param User $user
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function show(User $user)
     {
         return new UserResource($user);
     }
 
     /**
-    * Update the specified resource in storage.
-    */
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, User $user)
     {
-       $validation = Validator::make($request->all(), [
+        $validation = Validator::make($request->all(), [
             'name'      => 'required',
-            'email'     => 'email|unique:users,email,' . $user->id,
+            'email'     => 'email|unique:users,email,'.$user->id,
             'password'  => 'nullable|confirmed',
         ]);
 
@@ -60,7 +61,7 @@ class UsersController extends APIController
             return $this->throwValidation($validation->messages()->first());
         }
 
-        $user = $this->repositery->update($user->id,$request->all());
+        $user = $this->repositery->update($user->id, $request->all());
 
         return new UserResource($user);
     }

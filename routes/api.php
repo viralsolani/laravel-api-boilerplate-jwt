@@ -23,6 +23,3 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], functio
         Route::resource('users', 'UsersController');
     });
 });
-
-
-
