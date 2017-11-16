@@ -29,7 +29,7 @@ class UsersController extends APIController
      */
     public function index(Request $request)
     {
-        $limit = $request->get('paginate') ?  $request->get('paginate') : 25;
+        $limit = $request->get('paginate') ? $request->get('paginate') : 25;
 
         return UserResource::collection(
             $this->repositery->getPaginated($limit)
