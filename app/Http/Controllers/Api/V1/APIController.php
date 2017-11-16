@@ -148,6 +148,7 @@ class APIController extends Controller
      * Respond with unauthorized.
      *
      * @param string $message
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     protected function respondUnauthorized($message = 'Unauthorized')
@@ -159,6 +160,7 @@ class APIController extends Controller
      * Respond with forbidden.
      *
      * @param string $message
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     protected function respondForbidden($message = 'Forbidden')
