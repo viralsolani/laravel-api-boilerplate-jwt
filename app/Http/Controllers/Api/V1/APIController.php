@@ -141,7 +141,7 @@ class APIController extends Controller
      */
     public function respondInternalError($message = 'Internal Error')
     {
-        return $this->setStatusCode('500')->respondWithError($message);
+        return $this->setStatusCode(500)->respondWithError($message);
     }
 
     /**
@@ -153,7 +153,7 @@ class APIController extends Controller
      */
     protected function respondUnauthorized($message = 'Unauthorized')
     {
-        return $this->setStatusCode('401')->respondWithError($message);
+        return $this->setStatusCode(401)->respondWithError($message);
     }
 
     /**
@@ -165,7 +165,7 @@ class APIController extends Controller
      */
     protected function respondForbidden($message = 'Forbidden')
     {
-        return $this->respondWithError($message, 403);
+        return $this->->setStatusCode(403)->respondWithError($message);
     }
 
     /**
