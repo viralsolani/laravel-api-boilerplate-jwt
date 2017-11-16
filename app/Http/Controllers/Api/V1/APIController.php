@@ -33,7 +33,7 @@ class APIController extends Controller
      *
      * @param [type] $statusCode [description]
      *
-     * @return mix
+     * @return statuscode
      */
     public function setStatusCode($statusCode)
     {
@@ -48,7 +48,7 @@ class APIController extends Controller
      * @param array $data
      * @param array $headers
      *
-     * @return mix
+     * @return \Illuminate\Http\JsonResponse
      */
     public function respond($data, $headers = [])
     {
@@ -61,7 +61,7 @@ class APIController extends Controller
      * @param Paginator $items
      * @param array     $data
      *
-     * @return mix
+     * @return \Illuminate\Http\JsonResponse
      */
     public function respondWithPagination($items, $data)
     {
@@ -82,7 +82,7 @@ class APIController extends Controller
      *
      * @param string $message
      *
-     * @return mix
+     * @return \Illuminate\Http\JsonResponse
      */
     public function respondCreated($message)
     {
@@ -96,7 +96,7 @@ class APIController extends Controller
      *
      * @param string $message
      *
-     * @return mix
+     * @return \Illuminate\Http\JsonResponse
      */
     public function respondCreatedWithData($data)
     {
@@ -108,7 +108,7 @@ class APIController extends Controller
      *
      * @param $message
      *
-     * @return mix
+     * @return \Illuminate\Http\JsonResponse
      */
     public function respondWithError($message)
     {
@@ -125,7 +125,7 @@ class APIController extends Controller
      *
      * @param string $message
      *
-     * @return mix
+     * @return \Illuminate\Http\JsonResponse
      */
     public function respondNotFound($message = 'Not Found')
     {
@@ -137,7 +137,7 @@ class APIController extends Controller
      *
      * @param string $message
      *
-     * @return mix
+     * @return \Illuminate\Http\JsonResponse
      */
     public function respondInternalError($message = 'Internal Error')
     {
