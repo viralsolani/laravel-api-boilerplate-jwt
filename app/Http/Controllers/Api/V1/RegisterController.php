@@ -6,7 +6,6 @@ use App\Models\User\User;
 use App\Repositories\UserRepository;
 use Config;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use JWTAuth;
 use Validator;
 
