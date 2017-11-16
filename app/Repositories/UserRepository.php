@@ -33,8 +33,8 @@ class UserRepository extends BaseRepository
     {
         $user = new User();
 
-        $user->name     = $data['name'];
-        $user->email    = $data['email'];
+        $user->name = $data['name'];
+        $user->email = $data['email'];
         $user->password = bcrypt($data['password']);
 
         \DB::transaction(function () use ($user) {
