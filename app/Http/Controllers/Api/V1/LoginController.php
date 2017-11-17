@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use Auth;
 use Illuminate\Http\Request;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -41,5 +42,22 @@ class LoginController extends APIController
             'message'   => 'You are successfully logged in!',
             'token'     => $token,
         ]);
+    }
+
+    /**
+     * Log the user out (Invalidate the token)
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout()
+    {
+        Auth::guard()->logout();
+
+        return $this->respond([
+            'message'   => 'Successfully logged out'
+        ]);
+
+        return response()
+            ->json(['message' => 'Successfully logged out']);
     }
 }
