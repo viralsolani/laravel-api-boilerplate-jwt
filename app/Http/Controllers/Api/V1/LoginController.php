@@ -45,7 +45,7 @@ class LoginController extends APIController
     }
 
     /**
-     * Log the user out (Invalidate the token)
+     * Log the user out (Invalidate the token).
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -54,7 +54,7 @@ class LoginController extends APIController
         Auth::guard()->logout();
 
         return $this->respond([
-            'message'   => 'Successfully logged out'
+            'message'   => 'Successfully logged out',
         ]);
 
         return response()
