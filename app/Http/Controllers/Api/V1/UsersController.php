@@ -10,16 +10,16 @@ use Validator;
 
 class UsersController extends APIController
 {
-    protected $repositery;
+    protected $repository;
 
     /**
      * __construct.
      *
-     * @param $repositery
+     * @param $repository
      */
-    public function __construct(UserRepository $repositery)
+    public function __construct(UserRepository $repository)
     {
-        $this->repositery = $repositery;
+        $this->repository = $repository;
     }
 
     /**
@@ -32,7 +32,7 @@ class UsersController extends APIController
         $limit = $request->get('paginate') ? $request->get('paginate') : 25;
 
         return UserResource::collection(
-            $this->repositery->getPaginated($limit)
+            $this->repository->getPaginated($limit)
         );
     }
 
@@ -63,7 +63,7 @@ class UsersController extends APIController
             return $this->throwValidation($validation->messages()->first());
         }
 
-        $user = $this->repositery->update($user->id, $request->all());
+        $user = $this->repository->update($user->id, $request->all());
 
         return new UserResource($user);
     }
