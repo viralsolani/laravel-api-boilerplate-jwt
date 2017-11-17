@@ -165,7 +165,7 @@ class APIController extends Controller
      */
     protected function respondForbidden($message = 'Forbidden')
     {
-        return $this->->setStatusCode(403)->respondWithError($message);
+        return $this->setStatusCode(403)->respondWithError($message);
     }
 
     /**
