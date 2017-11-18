@@ -15,11 +15,15 @@
 Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], function () {
     Route::group(['prefix' => 'auth'], function () {
         Route::post('register', 'RegisterController@register');
-        Route::post('login', 'LoginController@login');
-        Route::post('logout', 'LoginController@logout');
+        Route::post('login', 'AuthController@login');
     });
 
     Route::group(['middleware' => ['jwt.auth']], function () {
+
+        Route::group(['prefix' => 'auth'], function () {
+            Route::post('logout', 'AuthController@logout');
+        });
+
         // Users
         Route::resource('users', 'UsersController');
     });

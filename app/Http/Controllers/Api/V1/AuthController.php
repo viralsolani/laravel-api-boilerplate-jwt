@@ -8,7 +8,7 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Validator;
 
-class LoginController extends APIController
+class AuthController extends APIController
 {
     /**
      * Log the user in.
@@ -35,7 +35,7 @@ class LoginController extends APIController
                 return $this->throwValidation('Invalid Credentials! Please try again.');
             }
         } catch (JWTException $e) {
-            return $this->respondInternalError('This is something wrong. Please try again!');
+            return $this->respondInternalError($e->getMessage());
         }
 
         return $this->respond([
@@ -51,13 +51,18 @@ class LoginController extends APIController
      */
     public function logout()
     {
-        Auth::guard()->logout();
+        try {
+            $token = JWTAuth::getToken();
+
+            if ($token) {
+                JWTAuth::invalidate($token);
+            }
+        } catch (JWTException $e) {
+            return $this->respondInternalError($e->getMessage());
+        }
 
         return $this->respond([
             'message'   => 'Successfully logged out',
         ]);
-
-        return response()
-            ->json(['message' => 'Successfully logged out']);
     }
 }
