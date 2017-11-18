@@ -21,6 +21,7 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], functio
     Route::group(['middleware' => ['jwt.auth']], function () {
         Route::group(['prefix' => 'auth'], function () {
             Route::post('logout', 'AuthController@logout');
+            Route::post('refresh', 'AuthController@refresh');
         });
 
         // Users

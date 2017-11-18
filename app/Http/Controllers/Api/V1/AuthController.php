@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use Auth;
 use Illuminate\Http\Request;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -62,6 +63,34 @@ class AuthController extends APIController
 
         return $this->respond([
             'message'   => 'Successfully logged out',
+        ]);
+    }
+
+    /**
+     * Refresh a token.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function refresh()
+    {
+        $token = JWTAuth::getToken();
+
+
+        if (!$token) {
+            $this->respondUnauthorized('Token not provided');
+        }
+
+        try {
+
+            $refreshedToken = JWTAuth::refresh($token);
+
+        } catch (JWTException $e) {
+            return $this->respondInternalError($e->getMessage());
+        }
+
+        return $this->respond([
+            'status' => 'ok',
+            'token' => $refreshedToken
         ]);
     }
 }
