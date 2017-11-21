@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response as IlluminateResponse;
+use Response;
 
 /**
  * Base API Controller.
