@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Models\User\User;
+use App\Repositories\UserRepository;
 use Config;
+use Illuminate\Http\Request;
 use JWTAuth;
 use Validator;
-use App\Models\User\User;
-use Illuminate\Http\Request;
-use App\Repositories\UserRepository;
 
 class RegisterController extends APIController
 {
