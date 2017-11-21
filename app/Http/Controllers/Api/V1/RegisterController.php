@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Models\User\User;
-use App\Repositories\UserRepository;
 use Config;
-use Illuminate\Http\Request;
 use JWTAuth;
 use Validator;
+use App\Models\User\User;
+use Illuminate\Http\Request;
+use App\Repositories\UserRepository;
 
 class RegisterController extends APIController
 {
-    protected $repositery;
+    protected $repository;
 
     /**
      * __construct.
      *
-     * @param $repositery
+     * @param $repository
      */
-    public function __construct(UserRepository $repositery)
+    public function __construct(UserRepository $repository)
     {
-        $this->repositery = $repositery;
+        $this->repository = $repository;
     }
 
     /**
@@ -43,18 +43,18 @@ class RegisterController extends APIController
             return $this->throwValidation($validation->messages()->first());
         }
 
-        $user = $this->repositery->create($request->all());
+        $user = $this->repository->create($request->all());
 
         if (!Config::get('boilerplate.register.release_token')) {
             return $this->respondCreated([
-                'message'  => 'You have registered successfully. Please check your email for activation!',
+                'message'  => trans('api.messages.registeration.success'),
             ]);
         }
 
         $token = JWTAuth::fromUser($user);
 
         return $this->respondCreated([
-            'message'   => 'You have registered successfully. Please check your email for activation!',
+            'message'   => trans('api.messages.registeration.success'),
             'token'     => $token,
         ]);
     }

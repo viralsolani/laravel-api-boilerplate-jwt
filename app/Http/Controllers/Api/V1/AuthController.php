@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use Illuminate\Http\Request;
 use JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
 use Validator;
+use Illuminate\Http\Request;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthController extends APIController
 {
@@ -31,14 +31,14 @@ class AuthController extends APIController
 
         try {
             if (!$token = JWTAuth::attempt($credentials)) {
-                return $this->throwValidation('Invalid Credentials! Please try again.');
+                return $this->throwValidation(trans('api.messages.login.failed'));
             }
         } catch (JWTException $e) {
             return $this->respondInternalError($e->getMessage());
         }
 
         return $this->respond([
-            'message'   => 'You are successfully logged in!',
+            'message'   => trans('api.messages.login.success'),
             'token'     => $token,
         ]);
     }
@@ -61,7 +61,7 @@ class AuthController extends APIController
         }
 
         return $this->respond([
-            'message'   => 'Successfully logged out',
+            'message'   => trans('api.messages.logout.success'),
         ]);
     }
 
@@ -75,7 +75,7 @@ class AuthController extends APIController
         $token = JWTAuth::getToken();
 
         if (!$token) {
-            $this->respondUnauthorized('Token not provided');
+            $this->respondUnauthorized(trans('api.messages.refresh.token.not_provided'));
         }
 
         try {
@@ -85,7 +85,7 @@ class AuthController extends APIController
         }
 
         return $this->respond([
-            'status' => 'ok',
+            'status' => trans('api.messages.refresh.status'),
             'token'  => $refreshedToken,
         ]);
     }
