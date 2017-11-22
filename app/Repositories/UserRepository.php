@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\User\User;
+use Illuminate\Support\Str;
 use App\Notifications\UserNeedsConfirmation;
 
 /**
@@ -62,5 +63,33 @@ class UserRepository extends BaseRepository
         });
 
         return $user;
+    }
+
+    /**
+     * Get User By Email
+     *
+     * @param  request
+     * @return user
+     */
+    public function getUserByEmail($request)
+    {
+        return $this->query()->where('email', '=', $request->get('email'))->first();
+    }
+
+    /**
+     * Create a new token for the user.
+     *
+     * @return string
+     */
+    public function createNewToken()
+    {
+        $token = hash_hmac('sha256', Str::random(40), 'hashKey');
+
+        \DB::table('password_resets')->insert([
+            'email' => request('email'),
+            'token' => $token,
+        ]);
+
+        return $token;
     }
 }

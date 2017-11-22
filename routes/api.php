@@ -22,6 +22,10 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], functio
         Route::group(['prefix' => 'auth'], function () {
             Route::post('logout', 'AuthController@logout');
             Route::post('refresh', 'AuthController@refresh');
+
+            // Password Reset Routes
+            Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
+            Route::post('password/reset', 'ResetPasswordController@reset')->name('password.reset');
         });
 
         // Users
