@@ -3,8 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\User\User;
-use Illuminate\Support\Str;
 use App\Notifications\UserNeedsConfirmation;
+use Illuminate\Support\Str;
 
 /**
  * Class UserRepository.
@@ -66,9 +66,10 @@ class UserRepository extends BaseRepository
     }
 
     /**
-     * Get User By Email
+     * Get User By Email.
      *
      * @param  request
+     *
      * @return user
      */
     public function getUserByEmail($request)
