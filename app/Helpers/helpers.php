@@ -1,11 +1,7 @@
 <?php
 
-use App\Exceptions\GeneralException;
 use App\Helpers\uuid;
-use App\Http\Utilities\SendEmail;
-use App\Models\Notification\Notification;
 use App\Models\Settings\Setting;
-use Carbon\Carbon as Carbon;
 
 /**
  * Henerate UUID.
@@ -144,7 +140,6 @@ if (!function_exists('settings')) {
         }
     }
 }
-
 
 if (!function_exists('escapeSlashes')) {
     /**
