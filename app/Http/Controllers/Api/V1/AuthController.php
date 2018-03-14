@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Models\Access\User\User;
 use Illuminate\Http\Request;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -20,7 +21,7 @@ class AuthController extends APIController
     {
         $validation = Validator::make($request->all(), [
             'email'     => 'required|email',
-            'password'  => 'required|min:6',
+            'password'  => 'required|min:4',
         ]);
 
         if ($validation->fails()) {

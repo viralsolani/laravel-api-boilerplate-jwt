@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
+/**
+ * Class EventServiceProvider.
+ */
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -12,10 +14,38 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
-        ],
+    protected $listen = [];
+
+    /**
+     * Class event subscribers.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        /*
+         * Frontend Subscribers
+         */
+
+        /*
+         * Auth Subscribers
+         */
+        \App\Listeners\Frontend\Auth\UserEventListener::class,
+
+        /*
+         * Backend Subscribers
+         */
+
+        /*
+         * Access Subscribers
+         */
+        \App\Listeners\Backend\Access\User\UserEventListener::class,
+        \App\Listeners\Backend\Access\Role\RoleEventListener::class,
+        \App\Listeners\Backend\Access\Permission\PermissionEventListener::class,
+        \App\Listeners\Backend\CMSPages\CMSPageEventListener::class,
+        \App\Listeners\Backend\EmailTemplates\EmailTemplateEventListener::class,
+        \App\Listeners\Backend\BlogCategories\BlogCategoryEventListener::class,
+        \App\Listeners\Backend\BlogTags\BlogTagEventListener::class,
+        \App\Listeners\Backend\Blogs\BlogEventListener::class,
     ];
 
     /**

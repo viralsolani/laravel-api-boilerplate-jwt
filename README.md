@@ -1,5 +1,5 @@
 
-## Laravel API Boilerplate (JWT Edition) for Laravel 5.5
+## Laravel API Boilerplate (JWT Edition) for Laravel 5.6
 
 [![License](https://img.shields.io/badge/License-MIT-red.svg)](https://github.com/viralsolani/laravel-api-boilerplate-jwt/blob/master/LICENSE.txt)
 [![StyleCI](https://styleci.io/repos/108310069/shield?style=plastic)](https://styleci.io/repos/108310069/shield?style=plastic)
@@ -8,11 +8,11 @@
 
 ## Introduction
 
-Laravel API Boilerplate is a "starter kit" you can use to build your first API in seconds. As you can easily imagine, it is built on top of the awesome Laravel Framework. This version is built on Laravel 5.5!
+Laravel API Boilerplate is a "starter kit" you can use to build your first API in seconds. As you can easily imagine, it is built on top of the awesome Laravel Framework. This version is built on Laravel 5.6!
 
 ## Installation
 
-Please check the official laravel installation guide for server requirements before you start. [Official Documentation](https://laravel.com/docs/5.4/installation#installation)
+Please check the official laravel installation guide for server requirements before you start. [Official Documentation](https://laravel.com/docs/5.6/installation#installation)
 
 
 Clone the repository

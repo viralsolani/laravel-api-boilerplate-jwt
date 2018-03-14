@@ -10,10 +10,9 @@ return [
     | This value is the name of your application. This value is used when the
     | framework needs to place the application's name in a notification or
     | any other location as required by the application or its packages.
-    |
     */
 
-    'name' => env('APP_NAME', 'Laravel Api Boilerplate JWT'),
+    'name' => env('APP_NAME', 'Laravel API Boilerplate'),
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => env('APP_LOCALE', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -91,7 +90,18 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | PHP Locale Code
+    |--------------------------------------------------------------------------
+    |
+    | The PHP locale determines the default locale that will be used
+    | by the Carbon library when setting Carbon's localization.
+    |
+    */
+    'locale_php' => env('APP_LOCALE_PHP', 'en_US'),
 
     /*
     |--------------------------------------------------------------------------
@@ -121,7 +131,7 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'single'),
+    'log' => env('APP_LOG', 'daily'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
@@ -167,17 +177,21 @@ return [
         /*
          * Package Service Providers...
          */
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Creativeorange\Gravatar\GravatarServiceProvider::class,
+        //DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
+        App\Providers\AccessServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        //App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\HistoryServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
     ],
 
     /*
@@ -230,8 +244,8 @@ return [
         /*
          * Third Party Aliases
          */
+        'Gravatar'    => Creativeorange\Gravatar\Facades\Gravatar::class,
         'JWTAuth'     => Tymon\JWTAuth\Facades\JWTAuth::class,
-
     ],
 
 ];

@@ -44,7 +44,7 @@ return [
     |
     */
 
-    'encrypt' => false,
+    'encrypt' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -122,10 +122,7 @@ return [
     |
     */
 
-    'cookie' => env(
-        'SESSION_COOKIE',
-        str_slug(env('APP_NAME', 'laravel'), '_').'_session'
-    ),
+    'cookie' => 'laravel_session',
 
     /*
     |--------------------------------------------------------------------------
@@ -181,17 +178,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Same-Site Cookies
+    | Session Timeout
     |--------------------------------------------------------------------------
     |
-    | This option determines how your cookies behave when cross-site requests
-    | take place, and can be used to mitigate CSRF attacks. By default, we
-    | do not enable this as other CSRF protection services are in place.
-    |
-    | Supported: "lax", "strict"
+    | Setting these values will enable a session timeout middleware that
+    | will automatically log the user out after a set number of seconds.
     |
     */
-
-    'same_site' => null,
+    'timeout_status' => env('SESSION_TIMEOUT_STATUS', true),
+    'timeout'        => env('SESSION_TIMEOUT', 600),
 
 ];

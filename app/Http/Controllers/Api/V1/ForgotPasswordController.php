@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Models\User\User;
-use App\Notifications\UserNeedsPasswordReset;
-use App\Repositories\UserRepository;
+use App\Notifications\Frontend\Auth\UserNeedsPasswordReset;
+use App\Repositories\Frontend\Access\User\UserRepository;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -37,13 +37,13 @@ class ForgotPasswordController extends APIController
             return $this->throwValidation($validation->messages()->first());
         }
 
-        $user = $this->repository->getUserByEmail($request);
+        $user = $this->repository->findByEmail($request->get('email'));
 
         if (!$user) {
             return $this->respondNotFound(trans('api.messages.forgot_password.validation.email_not_found'));
         }
 
-        $token = $this->repository->createNewToken();
+        $token = $this->repository->saveToken();
 
         $user->notify(new UserNeedsPasswordReset($token));
 
